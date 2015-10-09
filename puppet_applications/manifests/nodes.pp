@@ -4,8 +4,8 @@ node 'default' {
   # Disable if runnign on the live server as the users and the paths are already present;
   include environment    
   
-  #Required: The the analyser code in /opt/apps/log_analyser/repo/source_log-analyser/
-#  include database
+  #Required: 
+  include mpi
 #  include httpserver
 #  include log_analyser
 
