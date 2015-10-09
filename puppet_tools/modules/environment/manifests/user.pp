@@ -22,14 +22,6 @@ class environment::user {
     uid => 999,
     home => "/home/mpiuser", 
   }
-  
-  #Create the working directories
-  file { ["/home/mpiuser/bin/"]:
-    ensure => "directory",
-    owner  => "mpiuser",
-    group  => "mpiuser",
-    mode   => "0755",
-    require => User["mpiuser"],
-  }
+
   
 }
