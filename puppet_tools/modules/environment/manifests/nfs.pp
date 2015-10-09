@@ -6,4 +6,8 @@ class environment::nfs {
     require => Package['nfs-kernel-server'], 
   }
   
+  service { ['nfs-kernel-server']:
+    ensure  => running,
+    require => Package['nfs-common'],
+  }
 }

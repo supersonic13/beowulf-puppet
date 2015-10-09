@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!DOCTYPE config SYSTEM "/etc/iwatch/iwatch.dtd" >
+
+<config>
+  <guard email="root@localhost" name="IWatch"/>
+  <watchlist>
+    <title>Operating System</title>
+    <contactpoint email="root@localhost" name="Administrator"/>
+    <path type="single" syslog="on" exec="/usr/local/bin/checkForFileUpdates.sh">/home/mpiuser/updates</path>
+  </watchlist>
+</config>

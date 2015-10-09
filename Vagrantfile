@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/trusty32"
 
-  config.vm.hostname = "node3"
+  config.vm.hostname = "beowulf-node3"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
