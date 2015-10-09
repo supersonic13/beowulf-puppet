@@ -18,7 +18,7 @@ class environment {
   
   exec {"add-to-sudoers":
     command => "adduser mpiuser sudo",
-    path => "",
+    path => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
     require => User["mpiuser"],
   }  
   
@@ -36,7 +36,7 @@ class environment {
   #If master, do nothing, else install the HOSTS file found
   exec {"mount-nfs":
     command => "sudo mount master:/home/mpiuser /home/mpiuser",
-    path => "",
+    path => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
   }  
 
   
