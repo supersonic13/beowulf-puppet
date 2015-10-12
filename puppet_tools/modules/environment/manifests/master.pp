@@ -10,14 +10,14 @@ class environment::master {
     require => User["mpiuser"],
   }
   
-    #Create the working directories
-  file { ["/home/mpiuser/updates/"]:
-    ensure => "directory",
-    owner  => "mpiuser",
-    group  => "mpiuser",
-    mode   => "0755",
-    require => User["mpiuser"],
-  }
+#    #Create the working directories
+#  file { ["/home/mpiuser/updates/"]:
+#    ensure => "directory",
+#    owner  => "mpiuser",
+#    group  => "mpiuser",
+#    mode   => "0755",
+#    require => User["mpiuser"],
+#  }
   
   # configure hte /etc/exports file to share the master's /home/mpidir dir  
   exec { "edit_etc-exports_file":
