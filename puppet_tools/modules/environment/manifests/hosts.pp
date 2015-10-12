@@ -31,9 +31,10 @@ class environment::hosts {
 	}
 	
   exec { "getHostsFileOnce":
-    command => "/usr/local/bin/updateHostsFile.sh",
+    command => "/usr/local/bin/updateHostsFile.sh $hostname",
     path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
     require => [Package["nfs-common"], File["copy_update_hosts_file"],],
+    user => root,
   }
 
 }
