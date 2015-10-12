@@ -14,8 +14,8 @@ class environment::customuser {
   #Create the user directories
   file { "/home/mpiuser":
     ensure => "directory",
-    #owner  => "mpiuser",
-    #group  => "mpiuser",
+    owner  => "mpiuser",
+    group  => "mpiuser",
     mode   => "0755",
     require => Group ["mpiuser"],
   }  

@@ -4,6 +4,7 @@ class environment::slave {
   
   exec { "mount-master-home-dir":
     command => "mount beowulf-master:/home/mpiuser /home/mpiuser",
+    unless => "mount | grep \"^beowulf-master:/home/mpiuser\"",
     path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
     require => [Exec["getHostsFileOnce"], User["mpiuser"],], 
   }

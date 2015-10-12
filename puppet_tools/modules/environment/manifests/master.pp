@@ -31,6 +31,7 @@ class environment::master {
   exec { "copy_HostsNodes":
     command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
     path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+    user => root,
     require => Exec ["getHostsFileOnce"],
   }
     
