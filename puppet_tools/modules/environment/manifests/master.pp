@@ -43,7 +43,7 @@ class environment::master {
 #  }
     
   cron { "copy_AVAHI_files":
-    command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
+    command => "cp /tmp/hosts_hydra /home/mpiuser/hosts",
     user    => mpiuser,
     hour    => '*',
     minute  => '*/1',
@@ -51,13 +51,27 @@ class environment::master {
   }
   
   exec {"create-SSH-key":
-    command => "sudo -u mpiuser ssh-keygen -t rsa -f /home/mpiuser/.ssh/id_rsa -q -N \"\"",
+    #command => "sudo -u mpiuser ssh-keygen -t rsa -f /home/mpiuser/.ssh/id_rsa -q -N \"\"",
+    command => "ssh-keygen -t rsa -f /home/mpiuser/.ssh/id_rsa -q -N \"\"",
     path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
-    user => root,
+    user => mpiuser,
     creates => "/home/mpiuser/.ssh/id_rsa",
     cwd => "/home/mpiuser",
     require => User ["mpiuser"],
   }
+  
+  
+  
+#  exec {"create-authorized_keys":
+#    command => "ssh-copy-id localhost",
+#    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+#    user => mpiuser,
+#    creates => "/home/mpiuser/.ssh/authorized_keys",
+#    cwd => "/home/mpiuser",
+#    require => Exec ["create-SSH-key"],
+#  }
+  
+  
   
   
 }
