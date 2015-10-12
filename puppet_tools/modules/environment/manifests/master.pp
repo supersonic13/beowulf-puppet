@@ -1,5 +1,12 @@
 class environment::master {
   include environment
+  
+  exec {"mpiuser-ownership":
+    command => "sudo chown -R mpiuser:mpiuser /home/mpiuser",
+    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+    user => root,
+    require => User ["mpiuser"],
+  }
    
   #Create the working directories
   file { ["/home/mpiuser/bin/"]:
