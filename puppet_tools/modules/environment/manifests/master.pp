@@ -47,6 +47,7 @@ class environment::master {
     command => "sudo -u mpiuser ssh-keygen -t rsa -f /home/mpiuser/.ssh/id_rsa -q -N \"\"",
     path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
     user => root,
+    creates => "/home/mpiuser/.ssh/id_rsa",
     cwd => "/home/mpiuser",
     require => User ["mpiuser"],
   }
