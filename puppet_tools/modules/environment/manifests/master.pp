@@ -42,4 +42,13 @@ class environment::master {
     minute  => '*/1',
     require => Exec["copy_HostsNodes"],
   }
+  
+  exec {"create-SSH-key":
+    command => "ssh-keygen -t rsa -f /home/mpiuser/.ssh/id_rsa -q -N",
+    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+    user => mpiuser,
+    
+  }
+  
+  
 }
