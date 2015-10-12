@@ -7,11 +7,11 @@ cat /tmp/hosts_avahi | awk '{print $2" "$1}' >> /tmp/hosts_exports
 
 cp /tmp/hosts_exports /etc/hosts
 
-HOSTNAME=$1
-if [[ $HOSTNAME = "beowulf-master" ]]; then
-        echo "MASTER !"
-        cp /tmp/hosts_avahi /home/mpiuser/hosts
-fi
+#HOSTNAME=$1
+#if [[ $HOSTNAME = "beowulf-master" ]]; then
+#        echo "MASTER !"
+#        cp /tmp/hosts_avahi /home/mpiuser/hosts
+#fi
 
 
 
