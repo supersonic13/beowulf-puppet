@@ -9,8 +9,8 @@ class environment::hosts {
 #  }
   
   package {"avahi-daemon": ensure => present,}
-  package {"avahi-discover": ensure => present,}
-  package {"avahi-utils": ensure => present,}
+  package {"avahi-discover": ensure => present, require => Package["avahi-daemon"],}
+  package {"avahi-utils": ensure => present, require => Package["avahi-discover"],}
   
   
   file {"copy_update_hosts_file":
@@ -18,7 +18,8 @@ class environment::hosts {
     ensure  => file,
     source  => "puppet:///modules/environment/updateHostsFile.sh",
     mode    => "0755",
-    owner => "root",	      
+    owner => "root",
+    require => Package["avahi-utils"]	      
   }
   
   cron { "cron_hostsfile":
@@ -26,6 +27,7 @@ class environment::hosts {
 	  user    => root,
 	  hour    => '*',
 	  minute  => '*/1',
+	  require => File["copy_update_hosts_file"],
 	}
 	
   exec { "getHostsFileOnce":
