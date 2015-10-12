@@ -39,6 +39,6 @@ class environment::master {
     user    => root,
     hour    => '*',
     minute  => '*/1',
-    require => File["copy_HostsNodes"],
+    require => Exec["copy_HostsNodes"],
   }
 }
