@@ -33,4 +33,12 @@ class environment::master {
     path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
     require => Exec ["getHostsFileOnce"],
   }
+    
+  cron { "copy_AVAHI_files":
+    command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
+    user    => root,
+    hour    => '*',
+    minute  => '*/1',
+    require => File["copy_HostsNodes"],
+  }
 }
