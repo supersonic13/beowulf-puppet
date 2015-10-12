@@ -25,9 +25,13 @@ class environment::hosts {
 	  command => "/usr/local/bin/updateHostsFile.sh",
 	  user    => root,
 	  hour    => '*',
-	  minute  => '*/5',
+	  minute  => '*/1',
 	}
-  
-  #avahi-browse --all -r -t -p | egrep "^[=]" | grep "node" | awk -F";" '{print $7" "$8}' | egrep "[0-9]+.[0-9]+.[0-9]+.[0-9]+"
+	
+  exec { "getHostsFileOnce":
+    command => "/usr/local/bin/updateHostsFile.sh",
+    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+    require => [Package["nfs-common"], File["copy_update_hosts_file"],],
+  }
 
 }

@@ -1,11 +1,6 @@
 class environment::slave {
   include environment
-  
-  exec { "getHostsFileOnce":
-    command => "/usr/local/bin/updateHostsFile.sh",
-    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
-    require => [Package["nfs-common"], File["copy_update_hosts_file"],],
-  }
+
   
   exec { "mount-master-home-dir":
     command => "mount beowulf-master:/home/mpiuser /home/mpiuser",

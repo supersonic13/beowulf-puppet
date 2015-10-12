@@ -5,7 +5,7 @@ avahi-browse --all -r -t -p | egrep "^[=]" | grep "beowulf" | awk -F";" '{print 
 echo "127.0.0.1 localhost" > /tmp/hosts_exports
 cat /tmp/hosts_avahi | awk '{print $2" "$1}' >> /tmp/hosts_exports
 
-cp /tmp/hosts_avahi /home/mpiuser/hosts
+#cp /tmp/hosts_avahi /home/mpiuser/hosts
 cp /tmp/hosts_exports /etc/hosts
 
 

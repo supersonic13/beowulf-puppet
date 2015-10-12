@@ -28,4 +28,9 @@ class environment::master {
     notify => Service["nfs-kernel-server"], 
   }
   
+  exec { "copy_HostsNodes":
+    command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
+    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+    require => Exec ["getHostsFileOnce"],
+  }
 }
