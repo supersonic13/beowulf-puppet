@@ -24,8 +24,8 @@ class environment::hosts {
   cron { "cron_hostsfile":
 	  command => "/usr/local/bin/updateHostsFile.sh",
 	  user    => root,
-	  hour    => '*/1',
-	  minute  => '*/1',
+	  hour    => '*',
+	  minute  => '*/5',
 	}
   
   #avahi-browse --all -r -t -p | egrep "^[=]" | grep "node" | awk -F";" '{print $7" "$8}' | egrep "[0-9]+.[0-9]+.[0-9]+.[0-9]+"
