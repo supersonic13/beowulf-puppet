@@ -28,20 +28,20 @@ class environment::master {
     notify => Service["nfs-kernel-server"], 
   }
   
-  exec { "copy_HostsNodes":
-    command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
-    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
-    user => root,
-    require => Exec ["getHostsFileOnce"],
-  }
+#  exec { "copy_HostsNodes":
+#    command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
+#    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+#    user => root,
+#    require => Exec ["getHostsFileOnce"],
+#  }
     
-  cron { "copy_AVAHI_files":
-    command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
-    user    => root,
-    hour    => '*',
-    minute  => '*/1',
-    require => Exec["copy_HostsNodes"],
-  }
+#  cron { "copy_AVAHI_files":
+#    command => "cp /tmp/hosts_avahi /home/mpiuser/hosts",
+#    user    => root,
+#    hour    => '*',
+#    minute  => '*/1',
+#    require => Exec["copy_HostsNodes"],
+#  }
   
   exec {"create-SSH-key":
     command => "sudo -u mpiuser ssh-keygen -t rsa -f /home/mpiuser/.ssh/id_rsa -q -N \"\"",
