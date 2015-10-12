@@ -5,7 +5,7 @@ class environment::slave {
   exec { "mount-master-home-dir":
     command => "mount beowulf-master:/home/mpiuser /home/mpiuser",
     path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
-    require => Exec["getHostsFileOnce"], 
+    require => [Exec["getHostsFileOnce"], User["mpiuser"],], 
   }
   
   exec {"updateFSTab":
