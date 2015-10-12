@@ -14,7 +14,7 @@ class environment::customuser {
   #Create the user directories
   file { "/home/mpiuser":
     ensure => "directory",
-    owner  => "mpiuser",
+ #   owner  => "mpiuser",
     group  => "mpiuser",
     mode   => "0755",
     require => Group ["mpiuser"],
@@ -31,5 +31,12 @@ class environment::customuser {
     home => "/home/mpiuser", 
     require => File ["/home/mpiuser"],
   } 
+  
+  exec {"mpiuser-ownership":
+    command => "sudo chown mpiuser:mpiuser /home/mpiuser",
+    path    => ['/usr/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/sbin'],
+    user => root,
+    require => User ["mpiuser"],
+  }
 
 }
